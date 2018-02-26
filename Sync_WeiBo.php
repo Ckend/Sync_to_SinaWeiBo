@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: 微博自动同步助手
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
-Description: 发表文章时自动同步到微博，内容包括简介和文章中第一个图片，支持自定义微博模板。
+Plugin Name: Sync_to_SinaWeiBo
+Plugin URI: https://github.com/Ckend/Sync_to_SinaWeiBo
+Description: 新浪微博同步助手，发布新文章的时候将会自动同步到微博上，可自定义微博内容模板，是否带图片。
 Version: 1.0
 Author: Alltoshare
 Author URI: https://alltoshare.com
@@ -49,10 +49,20 @@ function Sync_Weibosettings_page() {
             <h3 class="hndle"><span>捐赠</span></h3>
             <div class="inside" style="margin:0;padding-top:10px;background-color:#ffffe0;">
                 <p>
-                  本插件由<a href="https://alltoshare.com">极致分享</a>开发和维护，如果你想支持开发者，可以进行捐助。非常感谢您的支持!
+                  本插件由<a href="https://alltoshare.com">极致分享</a>开发和维护，如果你想支持开发者，可以以微信支付的方式进行捐助。非常感谢您的支持!
                 </p>
                   <br />
-                  <img src="<?php echo esc_url( 'https://alltoshare.com/wp-content/uploads/2018/02/2018_02_25_1542307269.png' ); ?>" alt="微信支付" width="250"/>
+                  <?php
+                  $file = Sync_Weibo_PATH . "Support.png";
+                  if($fp = fopen($file,"rb", 0))
+                  {
+                      $gambar = fread($fp,filesize($file));
+                      fclose($fp);
+                      $base64 = chunk_split(base64_encode($gambar));
+                      $encode = '<img src="data:image/png;base64,' . $base64 .'" alt="微信支付" width="250"/>';
+                      echo $encode;
+                  }
+                    ?>
             </div>
         </div>
     </div>
