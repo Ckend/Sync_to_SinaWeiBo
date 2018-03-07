@@ -85,8 +85,6 @@ function sync_to_sina_weibo($post_ID) {
 	    	$headers['Content-Type'] = 'multipart/form-data; boundary='.$str_b;
 	    }
       $result = $request->post( $api_url , array( 'body' => $body, 'headers' => $headers ) );
-			echo json_encode($result);
-			return json_encode($result);
 	}
 }
 ?>
